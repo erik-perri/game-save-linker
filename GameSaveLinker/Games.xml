@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameSaveLinker>
+	<Options>
+		<OutputPath>{SavedGames}</OutputPath>
+	</Options>
+	<Games>
+		<Game Name="Age of Empires 3" 						Saves="{MyGames}\Age of Empires 3" />
+		<Game Name="Alpha Protocol" 						Saves="{MyDocuments}\Alpha Protocol" />
+		<Game Name="Batman Arkham Asylum" 					Saves="{MyDocuments}\Eidos\Batman Arkham Asylum" />
+		<Game Name="Batman Arkham City" 					Saves="{MyDocuments}\WB Games\Batman Arkham City" />
+		<Game Name="Bioshock" 								Saves="{MyDocuments}\Bioshock" />
+		<Game Name="BlazBlue Continuum Shift" 				Saves="{MyDocuments}\ARC SYSTEM WORKS\BLAZBLUE-CT" />
+		<Game Name="Borderlands 1" 							Saves="{MyGames}\Borderlands" />
+		<Game Name="Borderlands 2" 							Saves="{MyGames}\Borderlands 2" />
+		<Game Name="BulletStorm" 							Saves="{MyGames}\BulletStorm" />
+		<Game Name="Bully" 									Saves="{MyDocuments}\Bully Scholarship Edition" />
+		<Game Name="Civilization 4" 						Saves="{MyGames}\Sid Meier's Civilization 4" />
+		<Game Name="Civilization 5" 						Saves="{MyGames}\Sid Meier's Civilization 5" />
+		<Game Name="Civilization IV" 						Saves="{MyGames}\Sid Meier's Civilization IV" />
+		<Game Name="Civilization IV: Beyond the Sword" 		Saves="{MyGames}\beyond the sword" />
+		<Game Name="Civilization IV: Colonization" 			Saves="{MyGames}\civilization iv colonization" />
+		<Game Name="Civilization IV: Warlords" 				Saves="{MyGames}\Warlords" />
+		<Game Name="Command &amp; Conquer 3 Tiberium Wars" 	Saves="{MyDocuments}\Command &amp; Conquer 3 Tiberium Wars" />
+		<Game Name="Crayon Physics Deluxe" 					Saves="{MyDocuments}\Crayon Physics Deluxe" />
+		<Game Name="Crysis" 								Saves="{MyGames}\Crysis" />
+		<Game Name="Cthulhu Saves the World" 				Saves="{MyDocuments}\SavedGames\CSTW\Cthulhu Saves the World" />
+		<Game Name="Dark Souls" 							Saves="{MyDocuments}\NBGI\DarkSouls" />
+		<Game Name="Darksiders 1" 							Saves="{MyGames}\Darksiders" />
+		<Game Name="Dawn of War 2" 							Saves="{MyGames}\Dawn of War 2" />
+		<Game Name="Dead Horde" 							Saves="{MyDocuments}\DeadHorde" />
+		<Game Name="Dead Rising 2" 							Saves="{MyGames}\Dead Rising 2" />
+		<Game Name="Deus Ex" 								Saves="{MyDocuments}\Deus Ex" />
+		<Game Name="Devil May Cry 4" 						Saves="{MyDocuments}\CAPCOM\DEVILMAYCRY4" />
+		<Game Name="Diablo III" 							Saves="{MyDocuments}\Diablo III" />
+		<Game Name="DiRT 2" 								Saves="{MyGames}\DiRT2" />
+		<Game Name="DiRT 3" 								Saves="{MyGames}\DiRT3" />
+		<Game Name="Dishonored" 							Saves="{MyGames}\Dishonored" />
+		<Game Name="Dragon Age 1" 							Saves="{MyDocuments}\BioWare\Dragon Age" />
+		<Game Name="Dragon Age 2" 							Saves="{MyDocuments}\BioWare\Dragon Age 2" />
+		<Game Name="Dungeon Siege III" 						Saves="{MyGames}\Dungeon Siege III" />
+		<Game Name="Dungeons of Dredmor" 					Saves="{MyDocuments}\Gaslamp Games\Dungeons of Dredmor" />
+		<Game Name="Eschalon Book 1" 						Saves="{MyDocuments}\Eschalon Book 1 Saved Games" />
+		<Game Name="Fable 1" 								Saves="{MyGames}\Fable" />
+		<Game Name="Fallout 3" 								Saves="{MyGames}\Fallout3" />
+		<Game Name="Fallout: New Vegas" 					Saves="{MyGames}\FalloutNV" />
+		<Game Name="Far Cry 2" 								Saves="{MyGames}\Far Cry 2" />
+		<Game Name="FTL: Faster than Light" 				Saves="{MyGames}\FasterThanLight" />
+		<Game Name="Gnomoria" 								Saves="{MyGames}\Gnomoria" />
+		<Game Name="Gothic 3" 								Saves="{MyDocuments}\gothic3" />
+		<Game Name="Gothic 4" 								Saves="{MyDocuments}\ArcaniA - Gothic 4" />
+		<Game Name="Grotesque Tactics 1" 					Saves="{MyDocuments}\Grotesque-Tactics" />
+		<Game Name="GTA 3" 									Saves="{MyDocuments}\GTA3 User Files" />
+		<Game Name="GTA IV" 								Saves="{MyDocuments}\Rockstar Games\GTA IV" />
+		<Game Name="GTA IV: TLaD" 							Saves="{MyDocuments}\Rockstar Games\TLaD" />
+		<Game Name="GTA San Andreas" 						Saves="{MyDocuments}\GTA San Andreas User Files" />
+		<Game Name="Heroes of Might and Magic V" 			Saves="{MyGames}\Heroes of Might and Magic V" />
+		<Game Name="Hitman Blood Money" 					Saves="{MyDocuments}\Hitman Blood Money" />
+		<Game Name="Indigo Prophecy" 						Saves="{MyDocuments}\atari\Indigo Prophecy Profile" />
+		<Game Name="Just Cause 2" 							Saves="{MyDocuments}\Square Enix\Just Cause 2" />
+		<Game Name="Just Cause" 							Saves="{MyDocuments}\JustCause" />
+		<Game Name="Kingdoms of Amalur: Reckoning" 			Saves="{MyGames}\Reckoning" />
+		<Game Name="Kings Bounty Princess" 					Saves="{MyGames}\Kings Bounty Princess" />
+		<Game Name="Kings Bounty" 							Saves="{MyGames}\Kings Bounty" />
+		<Game Name="L.A. Noire" 							Saves="{MyDocuments}\Rockstar Games\L.A. Noire" />
+		<Game Name="Legend of Grimrock" 					Saves="{MyDocuments}\Almost Human\Legend of Grimrock" />
+		<Game Name="Magic the Gathering" 					Saves="{MyDocuments}\Wizards of the Coast\Magic the Gathering" />
+		<Game Name="Mass Effect 1" 							Saves="{MyDocuments}\BioWare\Mass Effect" />
+		<Game Name="Mass Effect 2" 							Saves="{MyDocuments}\BioWare\Mass Effect 2" />
+		<Game Name="Mass Effect 3" 							Saves="{MyDocuments}\BioWare\Mass Effect 3" />
+		<Game Name="Max Payne 3" 							Saves="{MyDocuments}\Rockstar Games\Max Payne 3" />
+		<Game Name="Mercenaries 2" 							Saves="{MyGames}\Mercenaries 2" />
+		<Game Name="Metro 2033" 							Saves="{MyDocuments}\4A Games\Metro 2033" />
+		<Game Name="Mirror's Edge" 							Saves="{MyDocuments}\EA Games\Mirror's Edge" />
+		<Game Name="Monday Night Combat" 					Saves="{MyGames}\UnrealEngine3\HostileGame" />
+		<Game Name="Mount &amp; Blade Warband (Data)"		Saves="{MyDocuments}\Mount&amp;Blade Warband" 							Link="{OutputPath}\Mount &amp; Blade Warband\Data" />
+		<Game Name="Mount &amp; Blade Warband"				Saves="{MyDocuments}\Mount&amp;Blade Warband Savegames" />
+		<Game Name="Mount &amp; Blade with Fire and Sword" 	Saves="{MyDocuments}\Mount&amp;Blade With Fire and Sword" />
+		<Game Name="Mount &amp; Blade" 						Saves="{MyDocuments}\Mount&amp;Blade Savegames" />
+		<Game Name="Neverwinter Nights 2" 					Saves="{MyDocuments}\Neverwinter Nights 2" />
+		<Game Name="Osmos" 									Saves="{MyDocuments}\Osmos" />
+		<Game Name="Overlord II" 							Saves="{MyGames}\Overlord II" />
+		<Game Name="Overlord" 								Saves="{MyDocuments}\Overlord" />
+		<Game Name="Path of Exile" 							Saves="{MyGames}\Path of Exile" />
+		<Game Name="Penumbra Overture" 						Saves="{MyDocuments}\Penumbra Overture" />
+		<Game Name="Prey" 									Saves="{MyGames}\PREY" />
+		<Game Name="Prototype" 								Saves="{MyDocuments}\Prototype" />
+		<Game Name="Red Faction: Guerrilla" 				Saves="{MyGames}\Red Faction Guerrilla" />
+		<Game Name="Risen" 									Saves="{MyDocuments}\Risen" />
+		<Game Name="Rockstar Social Club" 					Saves="{MyDocuments}\Rockstar Games\Social Club" />
+		<Game Name="Sacred 2" 								Saves="{MyDocuments}\Ascaron Entertainment\Sacred 2" />
+		<Game Name="SimCity 4" 								Saves="{MyDocuments}\SimCity 4" />
+		<Game Name="Skyrim" 								Saves="{MyGames}\skyrim" />
+		<Game Name="Sonic Generations" 						Saves="{MyGames}\Sonic Generations" />
+		<Game Name="SpaceTrader" 							Saves="{MyDocuments}\st\st" />
+		<Game Name="SpellForce 2" 							Saves="{MyDocuments}\SpellForce2" />
+		<Game Name="StarCraft II" 							Saves="{MyDocuments}\StarCraft II" />
+		<Game Name="Street Fighter IV" 						Saves="{MyDocuments}\CAPCOM\STREETFIGHTERIV" />
+		<Game Name="Terraria" 								Saves="{MyGames}\Terraria" />
+		<Game Name="The Last Remnant" 						Saves="{MyGames}\The last remnant" />
+		<Game Name="The Settlers Rise of an Empire" 		Saves="{MyDocuments}\THE SETTLERS - Rise of an Empire" />
+		<Game Name="Titan Quest" 							Saves="{MyGames}\Titan Quest" />
+		<Game Name="Titan Quest: Immortal Throne" 			Saves="{MyGames}\Titan Quest - Immortal Throne" />
+		<Game Name="Tomb Raider Legend" 					Saves="{MyDocuments}\Tomb Raider - Legend" />
+		<Game Name="Tomb Raider Underworld" 				Saves="{MyDocuments}\Eidos\Tomb Raider - Underworld" />
+		<Game Name="Torchlight 2" 							Saves="{MyGames}\Runic Games\Torchlight 2" />
+		<Game Name="TrackMania" 							Saves="{MyDocuments}\TrackMania" />
+		<Game Name="Universe Sandbox" 						Saves="{MyDocuments}\Universe Sandbox" />
+		<Game Name="Unreal Tournament 3" 					Saves="{MyGames}\Unreal Tournament 3" />
+		<Game Name="Velvet Assassin" 						Saves="{MyGames}\Velvet Assassin" />
+		<Game Name="Void" 									Saves="{MyGames}\Void" />
+		<Game Name="Witcher 1" 								Saves="{MyDocuments}\The Witcher" />
+		<Game Name="Witcher 2" 								Saves="{MyDocuments}\Witcher 2" />
+		<Game Name="X3: Albion Prelude" 					Saves="{MyDocuments}\Egosoft\X3AP" />
+		<Game Name="X3: Terran Conflict" 					Saves="{MyDocuments}\Egosoft\X3TC" />
+	</Games>
+</GameSaveLinker>
