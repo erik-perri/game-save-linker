@@ -220,7 +220,7 @@
 			this.Controls.Add(this.buttonRemoveLinks);
 			this.Controls.Add(this.buttonCreateLinks);
 			this.Name = "MainWindow";
-			this.Text = "GameSaveLinker";
+			this.Text = "Game Save Linker";
 			this.contextGames.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.viewGames)).EndInit();
 			this.ResumeLayout(false);
