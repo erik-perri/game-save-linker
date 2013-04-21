@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml;
 using System.IO;
+using System.Diagnostics;
 
 namespace GameSaveLinker
 {
@@ -18,13 +15,31 @@ namespace GameSaveLinker
 			this._options = new Dictionary<string, string>();
 		}
 
-		public int LoadGames(String xmlFile)
+		/**
+		 * Checks if any games are checked
+		 */
+		public Boolean HasChecked()
+		{
+			foreach (Game game in this)
+			{
+				if (game.Checked)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/**
+		 * Loads the games and options from the specified XML file
+		 */
+		public int LoadGames(String xmlFile, Boolean includeMissing = false)
 		{
 			this.Clear();
 			GamePlaceholder.ResetPlaceholders();
 			this._options.Clear();
 
-			Console.WriteLine("{0}.LoadGames: Started loading games from {1}", this.GetType().Name, xmlFile);
+			Trace.WriteLine(String.Format("{0}.LoadGames: Started loading games from {1}", this.GetType(), xmlFile));
 
 			XmlDocument xmlDoc = new XmlDocument();
 			xmlDoc.Load(xmlFile);
@@ -37,11 +52,12 @@ namespace GameSaveLinker
 					{
 						this._options[option.Name] = GamePlaceholder.ReplacePlaceholders(option.InnerText);
 						GamePlaceholder.AddPlaceholder(option.Name, this._options[option.Name]);
+						Trace.WriteLine(String.Format("{0}.LoadGames: Option found: {1}, value: {2}", this.GetType(), option.Name, this._options[option.Name]));
 					}
 				}
 			}
 
-			Console.WriteLine("{0}.LoadGames: Found {1} options", this.GetType().Name, this._options.Count);
+			Trace.WriteLine(String.Format("{0}.LoadGames: Found {1} options", this.GetType(), this._options.Count));
 
 			using (XmlNodeList gamesData = xmlDoc.GetElementsByTagName("Game"))
 			{
@@ -57,106 +73,53 @@ namespace GameSaveLinker
 								game.Name = attributeData.Value;
 								break;
 							case "Saves":
-								game.UnparsedSavePath = attributeData.Value;
+								game.OriginalPath = attributeData.Value;
 								break;
-							case "Link":
-								game.UnparsedLinkPath = attributeData.Value;
+							case "Storage":
+								game.StoragePath = attributeData.Value;
 								break;
 						}
 					}
 
-					if (string.IsNullOrEmpty(game.Name) || string.IsNullOrEmpty(game.UnparsedSavePath))
+					foreach (XmlNode nodeData in gameData.ChildNodes)
 					{
-						Console.WriteLine("{0}.LoadGames: Invalid game entry {1}", this.GetType().Name, gameData.OuterXml);
+						switch (nodeData.Name)
+						{
+							case "Name":
+								game.Name = nodeData.InnerText;
+								break;
+							case "Saves":
+								game.OriginalPath = nodeData.InnerText;
+								break;
+							case "Storage":
+								game.StoragePath = nodeData.InnerText;
+								break;
+						}
+					}
+
+					if (String.IsNullOrEmpty(game.GetStoragePath()))
+					{
+						game.StoragePath = Path.Combine("{StoragePath}", DirectoryEx.FixStringForPath(game.Name));
+					}
+
+					if (!game.IsValid())
+					{
+						Trace.WriteLine(String.Format("{0}.LoadGames: Invalid game entry {1}", this.GetType(), gameData.OuterXml));
 						continue;
 					}
 
-					if (string.IsNullOrEmpty(game.UnparsedLinkPath))
+					if (!includeMissing && game.State == Game.SaveState.Missing)
 					{
-						game.UnparsedLinkPath = Path.Combine("{OutputPath}", this.FixForPath(game.Name));
+						Trace.WriteLine(String.Format("{0}.LoadGames: No saves found for {1}", this.GetType(), game.ToString()));
+						continue;
 					}
-
-					game.LinkPath = GamePlaceholder.ReplacePlaceholders(game.UnparsedLinkPath);
-					game.SavePath = GamePlaceholder.ReplacePlaceholders(game.UnparsedSavePath);
 
 					this.Add(game);
 				}
 			}
-			Console.WriteLine("{0}.LoadGames: Found {1} games", this.GetType().Name, this.Count);
+			Trace.WriteLine(String.Format("{0}.LoadGames: Found {1} games", this.GetType(), this.Count));
 
 			return this.Count;
-		}
-
-		public string FixForPath(string input, string replace = "-")
-		{
-			string output = input;
-			string invalid = 
-				new string(Path.GetInvalidFileNameChars()) + 
-				new string(Path.GetInvalidPathChars())
-			;
-
-			foreach (char c in invalid)
-			{
-				input = input.Replace(c.ToString(), replace);
-			}
-
-			return input;
-		}
-
-		public static bool DirectoryHasNonHidden(string directory)
-		{
-			IEnumerable<FileInfo> files = new DirectoryInfo(directory).GetFiles().Where(x => (x.Attributes & FileAttributes.Hidden) == 0);
-			IEnumerable<DirectoryInfo> directories = new DirectoryInfo(directory).GetDirectories().Where(x => (x.Attributes & FileAttributes.Hidden) == 0);
-			return files.Count() > 0 || directories.Count() > 0;
-		}
-	}
-
-	public class GamePlaceholder
-	{
-		protected static Dictionary<string, string> _placeholders = null;
-
-		public static void SetupPlaceholder()
-		{
-			_placeholders = new Dictionary<string, string>();
-			ResetPlaceholders();
-		}
-
-		public static void AddPlaceholder(string key, string value)
-		{
-			if (_placeholders == null)
-			{
-				SetupPlaceholder();
-			}
-			_placeholders.Add(key, value);
-		}
-
-		public static void ResetPlaceholders()
-		{
-			if (_placeholders == null)
-			{
-				SetupPlaceholder();
-			}
-			_placeholders.Clear();
-			_placeholders.Add("UserProfile", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
-			_placeholders.Add("AppData", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
-			_placeholders.Add("SavedGames", SpecialFolder.GetSavedGames());
-			_placeholders.Add("MyGames", SpecialFolder.GetMyGames());
-			_placeholders.Add("MyDocuments", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
-		}
-
-		public static string ReplacePlaceholders(string input)
-		{
-			if (_placeholders == null)
-			{
-				SetupPlaceholder();
-			}
-
-			foreach (KeyValuePair<String, String> entry in _placeholders)
-			{
-				input = input.Replace("{" + entry.Key + "}", entry.Value);
-			}
-
-			return input;
 		}
 	}
 }

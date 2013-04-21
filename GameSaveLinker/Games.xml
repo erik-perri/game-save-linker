@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameSaveLinker>
 	<Options>
-		<OutputPath>{SavedGames}</OutputPath>
+		<StoragePath>{SavedGames}</StoragePath>
 	</Options>
 	<Games>
 		<Game Name="Age of Empires 3" 						Saves="{MyGames}\Age of Empires 3" />
@@ -72,7 +72,7 @@
 		<Game Name="Metro 2033" 							Saves="{MyDocuments}\4A Games\Metro 2033" />
 		<Game Name="Mirror's Edge" 							Saves="{MyDocuments}\EA Games\Mirror's Edge" />
 		<Game Name="Monday Night Combat" 					Saves="{MyGames}\UnrealEngine3\HostileGame" />
-		<Game Name="Mount &amp; Blade Warband (Data)"		Saves="{MyDocuments}\Mount&amp;Blade Warband" 							Link="{OutputPath}\Mount &amp; Blade Warband\Data" />
+		<Game Name="Mount &amp; Blade Warband (Data)"		Saves="{MyDocuments}\Mount&amp;Blade Warband" 							Storage="{StoragePath}\Mount &amp; Blade Warband\Data" />
 		<Game Name="Mount &amp; Blade Warband"				Saves="{MyDocuments}\Mount&amp;Blade Warband Savegames" />
 		<Game Name="Mount &amp; Blade with Fire and Sword" 	Saves="{MyDocuments}\Mount&amp;Blade With Fire and Sword" />
 		<Game Name="Mount &amp; Blade" 						Saves="{MyDocuments}\Mount&amp;Blade Savegames" />

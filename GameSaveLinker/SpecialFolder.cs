@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Diagnostics;
 
 namespace GameSaveLinker
 {
@@ -35,7 +32,7 @@ namespace GameSaveLinker
 			return path;
 		}
 
-		public static string GetFolderFromGuid(Guid folderGuid, int minimumMajorVersion = 6)
+		public static string GetFolderFromGuid(Guid folderGuid)
 		{
 			IntPtr path;
 			if (SHGetKnownFolderPath(ref folderGuid, 0, IntPtr.Zero, out path) == 0)
@@ -46,7 +43,7 @@ namespace GameSaveLinker
 			}
 			else
 			{
-				Console.WriteLine("SHGetKnownFolderPath({0}) failed", folderGuid);
+				Trace.WriteLine(String.Format("SpecialFolder.GetFolderFromGuid({0}) SHGetKnownFolderPath", folderGuid));
 			}
 			return String.Empty;
 		}

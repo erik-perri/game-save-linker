@@ -1,210 +1,287 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
 using Monitor.Core.Utilities;
+using System.Diagnostics;
 
 namespace GameSaveLinker
 {
 	public class Game
 	{
-		public string Linked
+		public String Name;
+		public Boolean Checked;
+		public String OriginalPath { set { this._originalPath = value; this.UpdateSaveState(); } }
+		public String StoragePath { set { this._storagePath = value; this.UpdateSaveState(); } }
+		public SaveState State { private set; get; }
+
+		protected String _originalPath;
+		protected String _storagePath;
+
+		public enum SaveState
 		{
-			get { return (this.IsLinked ? "Yes" : "No"); }
+			Missing,
+			Conflict,
+			NoLink,
+			PartialLink,
+			FullLink
+		};
+
+		public Game()
+		{
+			this.Name = String.Empty;
+			this.Checked = true;
+			this.State = SaveState.Missing;
+			this._originalPath = String.Empty;
+			this._storagePath = String.Empty;
 		}
 
-		public string Saves
-		{
-			get { return (this.HasSaves ? "Yes" : "No"); }
-		}
-
-		public bool IsLinked
+		/**
+		 * Called by the view to convert the state into readable text for the Saves column
+		 */
+		public String SavesAspect
 		{
 			get
 			{
-				return Directory.Exists(this.SavePath)
-					&& JunctionPoint.Exists(this.SavePath)
-					&& JunctionPoint.GetTarget(this.SavePath) == this.LinkPath
-					;
+				return (this.State == SaveState.Missing ? "No" : "Yes");
 			}
 		}
 
-		public bool HasSaves
+		/**
+		 * Called by the view to convert the state into an icon for the Saves column
+		 */
+		public String SavesIconAspect
 		{
 			get
 			{
-				return ((Directory.Exists(this.LinkPath)) || (Directory.Exists(this.SavePath) && !JunctionPoint.Exists(this.SavePath)));
+				return (this.State == SaveState.Missing ? "cross" : "tick");
 			}
 		}
 
-		public string Status
+		/**
+		 * Called by the view to convert the state into readable text for the Linked column
+		 */
+		public String LinkedAspect
 		{
 			get
 			{
-				if (Directory.Exists(this.LinkPath))
+				switch (this.State)
 				{
-					return string.Format("Saves exist in linked path \"{0}\"", this.LinkPath);
+					case SaveState.Missing:
+						return "";
+					case SaveState.Conflict:
+						return "Conflict";
+					case SaveState.NoLink:
+						return "No";
+					case SaveState.PartialLink:
+						return "Partial";
+					case SaveState.FullLink:
+						return "Yes";
+					default:
+						return "Unknown";
 				}
-				// If the link path does not exist the save path must not be a link for saves to exist
-				else if (Directory.Exists(this.SavePath) && !JunctionPoint.Exists(this.SavePath))
-				{
-					return string.Format("Saves exist in save path \"{0}\" but are not linked to \"{1}\"", this.SavePath, this.LinkPath);
-				}
-				return string.Format("Saves not found in either save path \"{0}\" or linked path \"{1}\"", this.SavePath, this.LinkPath);
 			}
 		}
 
-		public bool Checked
+		/**
+		 * Called by the view to convert the state into an icon for the Linked column
+		 */
+		public String LinkedIconAspect
 		{
-			get { return this._checked; }
-			set { this._checked = value; }
+			get
+			{
+				switch (this.State)
+				{
+					case SaveState.Missing:
+						return "";
+					case SaveState.Conflict:
+						return "exclamation_red";
+					case SaveState.NoLink:
+						return "cross";
+					case SaveState.PartialLink:
+						return "exclamation";
+					case SaveState.FullLink:
+						return "tick";
+					default:
+						return "";
+				}
+			}
 		}
 
-		public string Name
+		/**
+		 * Checks whether this is a valid game or not (has name, original path, and optionally storage path)
+		 */
+		public bool IsValid(Boolean checkStorage = true)
 		{
-			get { return this._name; }
-			set { this._name = value; }
+			if (string.IsNullOrEmpty(this.Name) || string.IsNullOrEmpty(this.GetOriginalPath()))
+			{
+				return false;
+			}
+
+			if (checkStorage && string.IsNullOrEmpty(this.GetStoragePath()))
+			{
+				return false;
+			}
+
+			return true;
 		}
 
-		public string SavePath
+		/**
+		 * Updates the state
+		 */
+		public SaveState UpdateSaveState()
 		{
-			get { return this._savePath; }
-			set { this._savePath = value; }
+			String originalPath = this.GetOriginalPath();
+			String storagePath = this.GetStoragePath();
+
+			this.State = SaveState.Missing;
+			if (Directory.Exists(originalPath) && JunctionPoint.Exists(originalPath))
+			{
+				if (JunctionPoint.GetTarget(originalPath) == storagePath)
+				{
+					this.State = SaveState.FullLink;
+				}
+				else
+				{
+					this.State = SaveState.Conflict;
+				}
+			}
+			else if (Directory.Exists(originalPath) && Directory.Exists(storagePath))
+			{
+				this.State = SaveState.Conflict;
+			}
+			else if (Directory.Exists(storagePath) && !Directory.Exists(originalPath))
+			{
+				this.State = SaveState.PartialLink;
+			}
+			else if (Directory.Exists(originalPath) && !Directory.Exists(storagePath))
+			{
+				this.State = SaveState.NoLink;
+			}
+
+			return this.State;
 		}
 
-		public string LinkPath
+		/**
+		 * Retrieves the original path, replacing placeholders if requested
+		 */
+		public String GetOriginalPath(Boolean full = true)
 		{
-			get { return this._linkPath; }
-			set { this._linkPath = value; }
+			if (full)
+			{
+				return GamePlaceholder.ReplacePlaceholders(this._originalPath);
+			}
+			return this._GetDisplayPath(this._originalPath);
 		}
 
-		public string UnparsedSavePath
+		/**
+		 * Retrieves the storage path, replacing placeholders if requested
+		 */
+		public String GetStoragePath(Boolean full = true)
 		{
-			get { return this._unparsedSavePath; }
-			set { this._unparsedSavePath = value; }
+			if (full)
+			{
+				return GamePlaceholder.ReplacePlaceholders(this._storagePath);
+			}
+			return this._GetDisplayPath(this._storagePath);
 		}
 
-		public string UnparsedLinkPath
+		/**
+		 * Retrieves a list of the paths that need to be hidden after linking is done
+		 */
+		public List<String> GetPathsToHide(Boolean full = true)
 		{
-			get { return this._unparsedLinkPath; }
-			set { this._unparsedLinkPath = value; }
+			return this._GetPaths(this._originalPath, full);
 		}
 
-		public bool HidePaths()
+		/**
+		 * Retrieves a list of the paths that need to be hidden for a game
+		 */
+		protected List<String> _GetPaths(String path, Boolean full = true)
 		{
-			List<string> paths = this.GetPaths();
-			bool allHidden = true, first = (paths.Count > 0);
-			
+			List<String> paths = new List<String>();
+
+			String current = "";
+			String[] sections = path.Split(Path.DirectorySeparatorChar);
+			foreach (String directory in sections)
+			{
+				if (String.IsNullOrEmpty(current))
+				{
+					current = directory;
+				}
+				else
+				{
+					current = Path.Combine(current, directory);
+					paths.Add((full ? GamePlaceholder.ReplacePlaceholders(current) : this._GetDisplayPath(current)));
+				}
+			}
+
+			// Reverse the paths so when we eventually change the hidden state the empty folder check does not trigger 
 			paths.Reverse();
-
-			foreach (string directory in paths)
-			{
-				if (!first)
-				{
-					if (GameList.DirectoryHasNonHidden(directory))
-					{
-						Console.WriteLine("{0}.HidePaths: Skipping directory, not empty {1}", this.GetType().Name, directory);
-						allHidden = false;
-						continue;
-					}
-				}
-				first = false;
-
-				File.SetAttributes(directory, File.GetAttributes(directory) | FileAttributes.System | FileAttributes.Hidden);
-				
-				FileAttributes fileAttributes = File.GetAttributes(directory);
-				if ((fileAttributes & FileAttributes.System) != FileAttributes.System || (fileAttributes & FileAttributes.Hidden) != FileAttributes.Hidden)
-				{
-					Console.WriteLine("{0}.HidePaths: Failed to change attributes for path {1}", this.GetType().Name, directory);
-					allHidden = false;
-				}
-			}
-			return allHidden;
-		}
-
-		public bool ShowPaths()
-		{
-			bool allShown = true;
-			foreach (string directory in this.GetPaths())
-			{
-				File.SetAttributes(directory, File.GetAttributes(directory) & ~(FileAttributes.System | FileAttributes.Hidden));
-
-				FileAttributes fileAttributes = File.GetAttributes(directory);
-				if ((fileAttributes & FileAttributes.System) == FileAttributes.System || (fileAttributes & FileAttributes.Hidden) == FileAttributes.Hidden)
-				{
-					Console.WriteLine("{0}.ShowPaths: Failed to change attributes for path {1}", this.GetType().Name, directory);
-					allShown = false;
-				}
-			}
-			return allShown;
-		}
-		
-		public bool CreateLink()
-		{
-			if (!this.HasSaves || this.IsLinked)
-			{
-				Console.WriteLine("{0}.CreateLink: Skipping, {1}", this.GetType().Name, (!this.HasSaves ? "no saves" : "already linked"));
-				return false;
-			}
-
-			if (Directory.Exists(this.SavePath))
-			{
-				File.SetAttributes(this.SavePath, File.GetAttributes(this.SavePath) & ~(FileAttributes.ReadOnly | FileAttributes.System | FileAttributes.Hidden));
-				FileSystem.MoveDirectory(this.SavePath, this.LinkPath, UIOption.AllDialogs);
-			}
-
-			JunctionPoint.Create(this.SavePath, this.LinkPath, true);
-
-			return (this.HasSaves && this.IsLinked);
-		}
-
-		public bool RemoveLink()
-		{
-			if (!this.HasSaves || !this.IsLinked)
-			{
-				Console.WriteLine("{0}.RemoveLink: Skipping, {1}", this.GetType().Name, (!this.HasSaves ? "no saves" : "not linked"));
-				return false;
-			}
-
-			File.SetAttributes(this.SavePath, File.GetAttributes(this.SavePath) & ~(FileAttributes.ReadOnly | FileAttributes.System | FileAttributes.Hidden));
-			Directory.Delete(this.SavePath);
-			FileSystem.MoveDirectory(this.LinkPath, this.SavePath, UIOption.AllDialogs);
-
-			return (this.HasSaves && !this.IsLinked);
-
-		}
-
-		public List<string> GetPaths()
-		{
-			List<string> paths = new List<string>();
-
-			string currentPath = "";
-			string[] sections = this.UnparsedSavePath.Split(Path.DirectorySeparatorChar);
-			foreach (string directory in sections)
-			{
-				if (String.IsNullOrEmpty(currentPath))
-				{
-					currentPath = directory;
-					continue;
-				}
-
-				currentPath = Path.Combine(currentPath, directory);
-				paths.Add(GamePlaceholder.ReplacePlaceholders(currentPath));
-			}
 
 			return paths;
 		}
 
-		protected bool _checked = true;
-		protected string _name;
-		protected string _savePath;
-		protected string _linkPath;
-		protected string _unparsedSavePath;
-		protected string _unparsedLinkPath;
+		/**
+		 * Cuts the path down to start at the parsed placeholder
+		 */
+		protected String _GetDisplayPath(String path)
+		{
+			int beforeParseCount = path.Split(Path.DirectorySeparatorChar).Length;
+			path = GamePlaceholder.ReplacePlaceholders(path);
+			int afterParseCount = path.Split(Path.DirectorySeparatorChar).Length;
+
+			for (int i = 0; i < afterParseCount - beforeParseCount; i++)
+			{
+				path = path.Substring(path.IndexOf(Path.DirectorySeparatorChar) + 1);
+			}
+
+			return path;
+		}
+
+		public String ToString(Boolean verbose = false)
+		{
+			if (verbose)
+			{
+				Trace.Indent();
+					Trace.WriteLine(String.Format("{0}", this.GetType()));
+					
+					Trace.Indent();
+						Trace.WriteLine(String.Format("Name:        {0}", this.Name));
+						Trace.WriteLine(String.Format("Checked:     {0}", this.Checked));
+						Trace.WriteLine(String.Format("State:       {0}", this.State));
+
+						Trace.WriteLine(String.Format("_originalPath: {0}", this._originalPath));
+						Trace.WriteLine(String.Format("_storagePath:  {0}", this._storagePath));
+
+						Trace.WriteLine(String.Format("GetStoragePath(true):  {0}", this.GetStoragePath(true)));
+						Trace.WriteLine(String.Format("GetStoragePath(false): {0}", this.GetStoragePath(false)));
+						Trace.WriteLine(String.Format("GetOriginalPath(true):  {0}", this.GetOriginalPath(true)));
+						Trace.WriteLine(String.Format("GetOriginalPath(false): {0}", this.GetOriginalPath(false)));
+
+						var originalPaths = this.GetPathsToHide(true);
+						Trace.WriteLine(String.Format("GetPathsToHide(true):  {0}", originalPaths.Count));
+						Trace.Indent();
+							foreach (String path in originalPaths)
+							{
+								Trace.WriteLine(String.Format("originalPaths[]: {0}", path));
+							}
+						Trace.Unindent();
+
+						var hiddenPaths = this.GetPathsToHide(false);
+						Trace.WriteLine(String.Format("GetPathsToHide(false): {0}", hiddenPaths.Count));
+						Trace.Indent();
+							foreach (String path in hiddenPaths)
+							{
+								Trace.WriteLine(String.Format("hiddenPaths[]: {0}", path));
+							}
+						Trace.Unindent();
+
+					Trace.Unindent();
+
+				Trace.Unindent();
+			}
+			return this.Name;
+		}
 	}
 }
