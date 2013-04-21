@@ -55,11 +55,11 @@
 			// buttonContinue
 			// 
 			this.buttonContinue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonContinue.Location = new System.Drawing.Point(304, 373);
+			this.buttonContinue.Location = new System.Drawing.Point(285, 373);
 			this.buttonContinue.Name = "buttonContinue";
-			this.buttonContinue.Size = new System.Drawing.Size(85, 23);
+			this.buttonContinue.Size = new System.Drawing.Size(95, 23);
 			this.buttonContinue.TabIndex = 1;
-			this.buttonContinue.Text = "Continue";
+			this.buttonContinue.Text = "&Make Changes";
 			this.buttonContinue.UseVisualStyleBackColor = true;
 			this.buttonContinue.Click += new System.EventHandler(this.buttonContinue_Click);
 			// 
@@ -67,11 +67,11 @@
 			// 
 			this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.buttonCancel.Location = new System.Drawing.Point(399, 373);
+			this.buttonCancel.Location = new System.Drawing.Point(389, 373);
 			this.buttonCancel.Name = "buttonCancel";
-			this.buttonCancel.Size = new System.Drawing.Size(85, 23);
+			this.buttonCancel.Size = new System.Drawing.Size(95, 23);
 			this.buttonCancel.TabIndex = 2;
-			this.buttonCancel.Text = "Cancel";
+			this.buttonCancel.Text = "&Cancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
 			// 
 			// viewActions
@@ -113,7 +113,6 @@
 			this.columnType.ImageAspectName = "TypeIconAspect";
 			this.columnType.Sortable = false;
 			this.columnType.Text = "Type";
-			this.columnType.Width = 90;
 			// 
 			// columnStatus
 			// 
