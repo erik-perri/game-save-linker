@@ -68,5 +68,23 @@ namespace GameSaveLinker
 
 			return input;
 		}
+
+		/**
+		 * Cuts the path down to start at the parsed placeholder
+		 */
+		public static String GetDisplayPath(String path)
+		{
+			int beforeParseCount = path.Split(System.IO.Path.DirectorySeparatorChar).Length;
+			path = GamePlaceholder.ReplacePlaceholders(path);
+			int afterParseCount = path.Split(System.IO.Path.DirectorySeparatorChar).Length;
+
+			for (int i = 0; i < afterParseCount - beforeParseCount; i++)
+			{
+				path = path.Substring(path.IndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
+			}
+
+			return path;
+		}
+
 	}
 }

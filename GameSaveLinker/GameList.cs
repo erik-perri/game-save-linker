@@ -97,7 +97,7 @@ namespace GameSaveLinker
 						}
 					}
 
-					if (String.IsNullOrEmpty(game.GetStoragePath()))
+					if (String.IsNullOrEmpty(game.StoragePathFull))
 					{
 						game.StoragePath = Path.Combine("{StoragePath}", DirectoryEx.FixStringForPath(game.Name));
 					}

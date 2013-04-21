@@ -83,21 +83,22 @@ namespace GameSaveLinker
 					continue;
 				}
 
-				List<String> paths = game.GetPathsToHide();
+				List<String> paths = this.GetPathsToHide(game.OriginalPath);
 				for (int i = 0, t = paths.Count; i < t; i++)
 				{
+					String realPath = GamePlaceholder.ReplacePlaceholders(paths[i]);
 					if (show)
 					{
-						if (DirectoryEx.IsHidden(paths[i]))
+						if (DirectoryEx.IsHidden(realPath))
 						{
-							actions.AddAction("show", game, i);
+							actions.AddAction("show", game, paths[i]);
 						}
 					}
 					else
 					{
-						if (!DirectoryEx.IsHidden(paths[i]))
+						if (!DirectoryEx.IsHidden(realPath))
 						{
-							actions.AddAction("hide", game, i);
+							actions.AddAction("hide", game, paths[i]);
 						}
 					}
 				}
@@ -136,7 +137,7 @@ namespace GameSaveLinker
 						continue;
 					}
 
-					if (Directory.Exists(game.GetOriginalPath()))
+					if (Directory.Exists(game.OriginalPathFull))
 					{
 						actions.AddAction("move-storage", game);
 					}
@@ -151,14 +152,14 @@ namespace GameSaveLinker
 						continue;
 					}
 
-					List<String> paths = game.GetPathsToHide();
+					List<String> paths = this.GetPathsToHide(game.OriginalPath);
 
 					// Start at 1 since the actual save path does not need to be unhidden
 					for (int i = 1, t = paths.Count; i < t; i++)
 					{
-						if (DirectoryEx.IsHidden(paths[i]))
+						if (DirectoryEx.IsHidden(GamePlaceholder.ReplacePlaceholders(paths[i])))
 						{
-							actions.AddAction("show", game, i);
+							actions.AddAction("show", game, paths[i]);
 						}
 					}
 
@@ -187,16 +188,15 @@ namespace GameSaveLinker
 			{
 				case "hide":
 				case "show":
-					List<String> paths = action.Game.GetPathsToHide(false);
-					return paths[action.PathId];
+					return GamePlaceholder.GetDisplayPath(action.Path);
 				case "move-storage":
-					return String.Format(moveFormat, action.Game.GetOriginalPath(false), action.Game.GetStoragePath(false));
+					return String.Format(moveFormat, action.Game.OriginalPathDisplay, action.Game.StoragePathDisplay);
 				case "move-original":
-					return String.Format(moveFormat, action.Game.GetStoragePath(false), action.Game.GetOriginalPath(false));
+					return String.Format(moveFormat, action.Game.StoragePathDisplay, action.Game.OriginalPathDisplay);
 				case "create-link":
-					return String.Format(moveFormat, action.Game.GetStoragePath(false), action.Game.GetOriginalPath(false));
+					return String.Format(moveFormat, action.Game.StoragePathDisplay, action.Game.OriginalPathDisplay);
 				case "delete-link":
-					return action.Game.GetOriginalPath(false);
+					return action.Game.OriginalPathDisplay;
 				default:
 					return String.Empty;
 			}
@@ -207,9 +207,8 @@ namespace GameSaveLinker
 			switch (action.Type)
 			{
 				case "hide":
-					return this.HidePath(action.Game, action.PathId);
 				case "show":
-					return this.ShowPath(action.Game, action.PathId);
+					return this.ShowPath(action.Game, GamePlaceholder.ReplacePlaceholders(action.Path), (action.Type == "show"));
 				case "move-storage":
 					return this.MoveSaves(action.Game, false);
 				case "move-original":
@@ -238,7 +237,7 @@ namespace GameSaveLinker
 					return false;
 				}
 
-				FileSystem.MoveDirectory(game.GetStoragePath(), game.GetOriginalPath(), UIOption.AllDialogs);
+				FileSystem.MoveDirectory(game.StoragePathFull, game.OriginalPathFull, UIOption.AllDialogs);
 				game.UpdateSaveState();
 				return (game.State == Game.SaveState.NoLink);
 			}
@@ -249,7 +248,7 @@ namespace GameSaveLinker
 					return false;
 				}
 
-				FileSystem.MoveDirectory(game.GetOriginalPath(), game.GetStoragePath(), UIOption.AllDialogs);
+				FileSystem.MoveDirectory(game.OriginalPathFull, game.StoragePathFull, UIOption.AllDialogs);
 				game.UpdateSaveState();
 				return (game.State == Game.SaveState.PartialLink);
 			}
@@ -262,12 +261,12 @@ namespace GameSaveLinker
 				return false;
 			}
 
-			if (Directory.Exists(game.GetOriginalPath()))
+			if (Directory.Exists(game.OriginalPathFull))
 			{
 				throw new Exception("Directory should not exist");
 			}
 
-			JunctionPoint.Create(game.GetOriginalPath(), game.GetStoragePath(), true);
+			JunctionPoint.Create(game.OriginalPathFull, game.StoragePathFull, true);
 			game.UpdateSaveState();
 			return (game.State == Game.SaveState.FullLink);
 		}
@@ -279,33 +278,27 @@ namespace GameSaveLinker
 				return false;
 			}
 
-			Directory.Delete(game.GetOriginalPath());
+			Directory.Delete(game.OriginalPathFull);
 			game.UpdateSaveState();
 			return (game.State == Game.SaveState.PartialLink);
 		}
 
-		public bool HidePath(Game game, int index)
+		public bool ShowPath(Game game, String path, bool show = true)
 		{
-			return this.ShowPath(game, index, false);
-		}
-
-		public bool ShowPath(Game game, int index, bool show = true)
-		{
-			String path = game.GetPathsToHide()[index];
-			if (!show && index > 0)
+			if (!show && game != null && path != game.OriginalPathFull)
 			{
 				if (DirectoryEx.HasNonHidden(path))
 				{
-					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Skipping directory, not empty {3}", game.GetType(), index, show, path));
+					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Skipping directory, not empty {3}", this.GetType(), path, show, path));
 					return false;
 				}
 			}
-
+			
 			if (show)
 			{
 				if (!DirectoryEx.Show(path))
 				{
-					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Failed to change attributes for path {3}", game.GetType(), index, show, path));
+					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Failed to change attributes for path {3}", this.GetType(), path, show, path));
 					return false;
 				}
 			}
@@ -313,12 +306,39 @@ namespace GameSaveLinker
 			{
 				if (!DirectoryEx.Hide(path))
 				{
-					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Failed to change attributes for path {3}", game.GetType(), index, show, path));
+					Trace.WriteLine(String.Format("{0}.ShowPath({1}, {2}) Failed to change attributes for path {3}", this.GetType(), path, show, path));
 					return false;
 				}
 			}
 			return true;
 		}
 
+		/**
+			* Retrieves a list of the paths that need to be hidden for a game
+			*/
+		public List<String> GetPathsToHide(String path/*, Boolean full = true*/)
+		{
+			List<String> paths = new List<String>();
+
+			String current = "";
+			String[] sections = path.Split(Path.DirectorySeparatorChar);
+			foreach (String directory in sections)
+			{
+				if (String.IsNullOrEmpty(current))
+				{
+					current = directory;
+				}
+				else
+				{
+					current = Path.Combine(current, directory);
+					paths.Add(current);
+				}
+			}
+
+			// Reverse the paths so when we eventually change the hidden state the empty folder check does not trigger 
+			paths.Reverse();
+
+			return paths;
+		}
 	}
 }

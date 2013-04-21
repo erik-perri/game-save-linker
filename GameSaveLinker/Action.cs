@@ -6,11 +6,11 @@ namespace GameSaveLinker
 {
 	public class Action
 	{
-		public int PathId { get; private set; }
-		public int Order { get; private set; }
-		public Game Game { get; private set; }
 		public String Type { get; private set; }
+		public Game Game { get; private set; }
+		public String Path { get; private set; }
 		public ActionStatus Status { get; set; }
+		public int Order { get; private set; }
 
 		public enum ActionStatus
 		{
@@ -20,17 +20,17 @@ namespace GameSaveLinker
 		};
 
 		public Action(String type, Game game, int order)
-			: this(type, game, -1, order)
+			: this(type, game, String.Empty, order)
 		{
 		}
 
-		public Action(String type, Game game, int pathId, int order)
+		public Action(String type, Game game, String path, int order)
 		{
 			this.Type = type;
 			this.Game = game;
-			this.Order = order;
+			this.Path = path;
 			this.Status = ActionStatus.None;
-			this.PathId = pathId;
+			this.Order = order;
 		}
 
 		public String OrderAspect
@@ -40,7 +40,7 @@ namespace GameSaveLinker
 
 		public String GameAspect
 		{
-			get { return this.Game.Name.ToString(); }
+			get { return this.Game != null ? this.Game.Name.ToString() : "Miscellaneous"; }
 		}
 
 		public String StatusAspect
@@ -119,9 +119,15 @@ namespace GameSaveLinker
 			this.Add(newAction);
 		}
 
-		public void AddAction(String type, Game game, int pathId)
+		public void AddAction(String type, Game game, String path)
 		{
-			Action newAction = new Action(type, game, pathId, this.Count() + 1);
+			Action newAction = new Action(type, game, path, this.Count() + 1);
+			this.Add(newAction);
+		}
+
+		public void AddAction(String type, String path)
+		{
+			Action newAction = new Action(type, null, path, this.Count() + 1);
 			this.Add(newAction);
 		}
 	}
