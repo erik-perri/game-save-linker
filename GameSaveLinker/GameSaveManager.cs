@@ -18,7 +18,7 @@ namespace GameSaveLinker
 		{
 		}
 
-		public int LoadGames()
+		public int LoadGames(Boolean includeMissing = false)
 		{
 			this.Games = new GameList();
 
@@ -33,24 +33,7 @@ namespace GameSaveLinker
 				}
 			}
 
-			return this.Games.LoadGames(xmlPath);
-		}
-
-		public GameList FilterExisting()
-		{
-			GameList filtered = new GameList();
-
-			foreach (Game game in this.Games)
-			{
-				if (game.State == Game.SaveState.Missing)
-				{
-					continue;
-				}
-
-				filtered.Add(game);
-			}
-
-			return filtered;
+			return this.Games.LoadGames(xmlPath, includeMissing);
 		}
 
 		public void CheckAll(Boolean value = true)

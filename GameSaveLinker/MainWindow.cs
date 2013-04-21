@@ -10,10 +10,16 @@ namespace GameSaveLinker
 	public partial class MainWindow : Form
 	{
 		protected GameSaveManager manager;
+		protected Boolean includeMissing = false;
 
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			if (!this.includeMissing)
+			{
+				this.columnSaves.Width = 0;
+			}
 
 			manager = new GameSaveManager();
 			this.columnName.FillsFreeSpace = true;
@@ -26,7 +32,7 @@ namespace GameSaveLinker
 			this.viewGames.BeginUpdate();
 			if (rebuild)
 			{
-				this.manager.LoadGames();
+				this.manager.LoadGames(this.includeMissing);
 				this.viewGames.ClearObjects();
 				this.viewGames.AddObjects(this.manager.Games);
 			}
