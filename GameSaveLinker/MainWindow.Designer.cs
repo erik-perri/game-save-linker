@@ -86,13 +86,13 @@
 			// contextGames
 			// 
 			this.contextGames.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkAllToolStripMenuItem,
-            this.checkNoneToolStripMenuItem,
-            this.toolStripSeparator1,
             this.checkSelectedToolStripMenuItem,
-            this.uncheckSelectedToolStripMenuItem});
+            this.uncheckSelectedToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.checkAllToolStripMenuItem,
+            this.checkNoneToolStripMenuItem});
 			this.contextGames.Name = "contextGames";
-			this.contextGames.Size = new System.Drawing.Size(168, 98);
+			this.contextGames.Size = new System.Drawing.Size(168, 120);
 			this.contextGames.Opening += new System.ComponentModel.CancelEventHandler(this.contextGames_Opening);
 			// 
 			// checkAllToolStripMenuItem
@@ -106,7 +106,7 @@
 			// 
 			this.checkNoneToolStripMenuItem.Name = "checkNoneToolStripMenuItem";
 			this.checkNoneToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-			this.checkNoneToolStripMenuItem.Text = "Check &None";
+			this.checkNoneToolStripMenuItem.Text = "Uncheck A&ll";
 			this.checkNoneToolStripMenuItem.Click += new System.EventHandler(this.checkNoneToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
@@ -131,7 +131,7 @@
 			// buttonHideLinks
 			// 
 			this.buttonHideLinks.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.buttonHideLinks.Location = new System.Drawing.Point(233, 439);
+			this.buttonHideLinks.Location = new System.Drawing.Point(231, 439);
 			this.buttonHideLinks.Name = "buttonHideLinks";
 			this.buttonHideLinks.Size = new System.Drawing.Size(75, 23);
 			this.buttonHideLinks.TabIndex = 7;
@@ -142,7 +142,7 @@
 			// buttonShowLinks
 			// 
 			this.buttonShowLinks.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-			this.buttonShowLinks.Location = new System.Drawing.Point(317, 439);
+			this.buttonShowLinks.Location = new System.Drawing.Point(315, 439);
 			this.buttonShowLinks.Name = "buttonShowLinks";
 			this.buttonShowLinks.Size = new System.Drawing.Size(75, 23);
 			this.buttonShowLinks.TabIndex = 8;

@@ -96,8 +96,8 @@ namespace GameSaveLinker
 		{
 			int selected = this.viewGames.SelectedItems.Count;
 
-			this.contextGames.Items[3].Enabled = (selected > 0);
-			this.contextGames.Items[4].Enabled = (selected > 0);
+			this.contextGames.Items[0].Enabled = (selected > 0);
+			this.contextGames.Items[1].Enabled = (selected > 0);
 		}
 
 		private void checkSelectedToolStripMenuItem_Click(object sender, EventArgs e)
