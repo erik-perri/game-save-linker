@@ -179,24 +179,24 @@ namespace GameSaveLinker
 			return this.HandleMoveToStorage(false);
 		}
 
-		public static String PreviewAction(Game game, String action, int pathId)
+		public static String PreviewAction(Action action)
 		{
 			String moveFormat = "{0} -> {1}";
-
-			switch (action)
+			
+			switch (action.Type)
 			{
 				case "hide":
 				case "show":
-					List<String> paths = game.GetPathsToHide(false);
-					return paths[pathId];
+					List<String> paths = action.Game.GetPathsToHide(false);
+					return paths[action.PathId];
 				case "move-storage":
-					return String.Format(moveFormat, game.GetOriginalPath(false), game.GetStoragePath(false));
+					return String.Format(moveFormat, action.Game.GetOriginalPath(false), action.Game.GetStoragePath(false));
 				case "move-original":
-					return String.Format(moveFormat, game.GetStoragePath(false), game.GetOriginalPath(false));
+					return String.Format(moveFormat, action.Game.GetStoragePath(false), action.Game.GetOriginalPath(false));
 				case "create-link":
-					return String.Format(moveFormat, game.GetStoragePath(false), game.GetOriginalPath(false));
+					return String.Format(moveFormat, action.Game.GetStoragePath(false), action.Game.GetOriginalPath(false));
 				case "delete-link":
-					return game.GetOriginalPath(false);
+					return action.Game.GetOriginalPath(false);
 				default:
 					return String.Empty;
 			}

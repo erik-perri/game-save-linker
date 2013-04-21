@@ -45,7 +45,7 @@ namespace GameSaveLinker
 
 		public String StatusAspect
 		{
-			get { return GameSaveManager.PreviewAction(this.Game, this.Type, this.PathId); }
+			get { return GameSaveManager.PreviewAction(this); }
 		}
 
 		public String TypeAspect
