@@ -257,7 +257,7 @@ namespace GameSaveLinker
 
 		public bool CreateLink(Game game)
 		{
-			if (game.State == Game.SaveState.Missing || game.State == Game.SaveState.Conflict || game.State == Game.SaveState.FullLink)
+			if (game.State != Game.SaveState.NoLink && game.State != Game.SaveState.PartialLink)
 			{
 				return false;
 			}
