@@ -7,7 +7,7 @@ namespace GameSaveLinker
 	public class Action
 	{
 		public int PathId { get; private set; }
-		public int Id { get; private set; }
+		public int Order { get; private set; }
 		public Game Game { get; private set; }
 		public String Type { get; private set; }
 		public ActionStatus Status { get; set; }
@@ -19,23 +19,23 @@ namespace GameSaveLinker
 			Failure
 		};
 
-		public Action(String type, Game game, int id)
-			: this(type, game, -1, id)
+		public Action(String type, Game game, int order)
+			: this(type, game, -1, order)
 		{
 		}
 
-		public Action(String type, Game game, int pathId, int id)
+		public Action(String type, Game game, int pathId, int order)
 		{
 			this.Type = type;
 			this.Game = game;
-			this.Id = id;
+			this.Order = order;
 			this.Status = ActionStatus.None;
 			this.PathId = pathId;
 		}
 
 		public String OrderAspect
 		{
-			get { return this.Id.ToString("000000"); }
+			get { return this.Order.ToString("000000"); }
 		}
 
 		public String GameAspect
