@@ -16,7 +16,8 @@ namespace GameSaveLinker
 			InitializeComponent();
 
 			manager = new GameSaveManager();
-			
+			this.ColumnName.FillsFreeSpace = true;
+
 			RefreshView(true);
 		}
 
