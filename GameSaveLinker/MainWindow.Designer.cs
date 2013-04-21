@@ -34,18 +34,18 @@
 			this.buttonRemoveLinks = new System.Windows.Forms.Button();
 			this.buttonExit = new System.Windows.Forms.Button();
 			this.contextGames = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.checkNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.checkSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.uncheckSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.checkNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.buttonHideLinks = new System.Windows.Forms.Button();
 			this.buttonShowLinks = new System.Windows.Forms.Button();
 			this.imageListGames = new System.Windows.Forms.ImageList(this.components);
 			this.viewGames = new BrightIdeasSoftware.ObjectListView();
-			this.ColumnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-			this.ColumnSaves = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-			this.ColumnLink = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+			this.columnName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+			this.columnSaves = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+			this.columnLink = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
 			this.contextGames.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.viewGames)).BeginInit();
 			this.SuspendLayout();
@@ -92,27 +92,8 @@
             this.checkAllToolStripMenuItem,
             this.checkNoneToolStripMenuItem});
 			this.contextGames.Name = "contextGames";
-			this.contextGames.Size = new System.Drawing.Size(168, 120);
+			this.contextGames.Size = new System.Drawing.Size(168, 98);
 			this.contextGames.Opening += new System.ComponentModel.CancelEventHandler(this.contextGames_Opening);
-			// 
-			// checkAllToolStripMenuItem
-			// 
-			this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
-			this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-			this.checkAllToolStripMenuItem.Text = "Check &All";
-			this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
-			// 
-			// checkNoneToolStripMenuItem
-			// 
-			this.checkNoneToolStripMenuItem.Name = "checkNoneToolStripMenuItem";
-			this.checkNoneToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-			this.checkNoneToolStripMenuItem.Text = "Uncheck A&ll";
-			this.checkNoneToolStripMenuItem.Click += new System.EventHandler(this.checkNoneToolStripMenuItem_Click);
-			// 
-			// toolStripSeparator1
-			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
 			// 
 			// checkSelectedToolStripMenuItem
 			// 
@@ -127,6 +108,25 @@
 			this.uncheckSelectedToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
 			this.uncheckSelectedToolStripMenuItem.Text = "&Uncheck Selected";
 			this.uncheckSelectedToolStripMenuItem.Click += new System.EventHandler(this.uncheckSelectedToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+			// 
+			// checkAllToolStripMenuItem
+			// 
+			this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
+			this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+			this.checkAllToolStripMenuItem.Text = "Check &All";
+			this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
+			// 
+			// checkNoneToolStripMenuItem
+			// 
+			this.checkNoneToolStripMenuItem.Name = "checkNoneToolStripMenuItem";
+			this.checkNoneToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+			this.checkNoneToolStripMenuItem.Text = "Uncheck A&ll";
+			this.checkNoneToolStripMenuItem.Click += new System.EventHandler(this.checkNoneToolStripMenuItem_Click);
 			// 
 			// buttonHideLinks
 			// 
@@ -161,18 +161,18 @@
 			// 
 			// viewGames
 			// 
-			this.viewGames.AllColumns.Add(this.ColumnName);
-			this.viewGames.AllColumns.Add(this.ColumnSaves);
-			this.viewGames.AllColumns.Add(this.ColumnLink);
+			this.viewGames.AllColumns.Add(this.columnName);
+			this.viewGames.AllColumns.Add(this.columnSaves);
+			this.viewGames.AllColumns.Add(this.columnLink);
 			this.viewGames.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.viewGames.CheckBoxes = true;
 			this.viewGames.CheckedAspectName = "Checked";
 			this.viewGames.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ColumnName,
-            this.ColumnSaves,
-            this.ColumnLink});
+            this.columnName,
+            this.columnSaves,
+            this.columnLink});
 			this.viewGames.ContextMenuStrip = this.contextGames;
 			this.viewGames.Location = new System.Drawing.Point(12, 12);
 			this.viewGames.Name = "viewGames";
@@ -184,29 +184,29 @@
 			this.viewGames.UseCompatibleStateImageBehavior = false;
 			this.viewGames.View = System.Windows.Forms.View.Details;
 			// 
-			// ColumnName
+			// columnName
 			// 
-			this.ColumnName.AspectName = "Name";
-			this.ColumnName.CellPadding = null;
-			this.ColumnName.CheckBoxes = true;
-			this.ColumnName.Text = "Name";
-			this.ColumnName.Width = 300;
+			this.columnName.AspectName = "Name";
+			this.columnName.CellPadding = null;
+			this.columnName.CheckBoxes = true;
+			this.columnName.Text = "Name";
+			this.columnName.Width = 300;
 			// 
-			// ColumnSaves
+			// columnSaves
 			// 
-			this.ColumnSaves.AspectName = "SavesAspect";
-			this.ColumnSaves.CellPadding = null;
-			this.ColumnSaves.ImageAspectName = "SavesIconAspect";
-			this.ColumnSaves.Text = "Saves Exist";
-			this.ColumnSaves.Width = 80;
+			this.columnSaves.AspectName = "SavesAspect";
+			this.columnSaves.CellPadding = null;
+			this.columnSaves.ImageAspectName = "SavesIconAspect";
+			this.columnSaves.Text = "Saves Exist";
+			this.columnSaves.Width = 80;
 			// 
-			// ColumnLink
+			// columnLink
 			// 
-			this.ColumnLink.AspectName = "LinkedAspect";
-			this.ColumnLink.CellPadding = null;
-			this.ColumnLink.ImageAspectName = "LinkedIconAspect";
-			this.ColumnLink.Text = "Linked";
-			this.ColumnLink.Width = 80;
+			this.columnLink.AspectName = "LinkedAspect";
+			this.columnLink.CellPadding = null;
+			this.columnLink.ImageAspectName = "LinkedIconAspect";
+			this.columnLink.Text = "Linked";
+			this.columnLink.Width = 80;
 			// 
 			// MainWindow
 			// 
@@ -233,9 +233,9 @@
 		private System.Windows.Forms.Button buttonRemoveLinks;
 		private System.Windows.Forms.Button buttonExit;
 		private BrightIdeasSoftware.ObjectListView viewGames;
-		private BrightIdeasSoftware.OLVColumn ColumnName;
-		private BrightIdeasSoftware.OLVColumn ColumnSaves;
-		private BrightIdeasSoftware.OLVColumn ColumnLink;
+		private BrightIdeasSoftware.OLVColumn columnName;
+		private BrightIdeasSoftware.OLVColumn columnSaves;
+		private BrightIdeasSoftware.OLVColumn columnLink;
 		private System.Windows.Forms.Button buttonHideLinks;
 		private System.Windows.Forms.Button buttonShowLinks;
 		private System.Windows.Forms.ContextMenuStrip contextGames;
