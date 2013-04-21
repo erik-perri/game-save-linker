@@ -9,6 +9,11 @@ namespace GameSaveLinker
 	{
 		public static Boolean IsHidden(String path)
 		{
+			if (!Directory.Exists(path))
+			{
+				return false;
+			}
+
 			FileAttributes fileAttributes = File.GetAttributes(path);
 			if ((fileAttributes & FileAttributes.System) == FileAttributes.System && (fileAttributes & FileAttributes.Hidden) == FileAttributes.Hidden)
 			{
@@ -19,18 +24,33 @@ namespace GameSaveLinker
 
 		public static Boolean Hide(String path)
 		{
+			if (!Directory.Exists(path))
+			{
+				return false;
+			}
+
 			File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.System | FileAttributes.Hidden);
 			return DirectoryEx.IsHidden(path);
 		}
 
 		public static Boolean Show(String path)
 		{
+			if (!Directory.Exists(path))
+			{
+				return false;
+			}
+
 			File.SetAttributes(path, File.GetAttributes(path) & ~(FileAttributes.System | FileAttributes.Hidden));
 			return !DirectoryEx.IsHidden(path);
 		}
 
 		public static Boolean HasNonHidden(String path)
 		{
+			if (!Directory.Exists(path))
+			{
+				return false;
+			}
+			
 			IEnumerable<FileInfo> files = new DirectoryInfo(path).GetFiles().Where(x => (x.Attributes & FileAttributes.Hidden) == 0);
 			IEnumerable<DirectoryInfo> directories = new DirectoryInfo(path).GetDirectories().Where(x => (x.Attributes & FileAttributes.Hidden) == 0);
 			return files.Count() > 0 || directories.Count() > 0;
