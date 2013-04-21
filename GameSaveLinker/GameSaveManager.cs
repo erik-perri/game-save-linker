@@ -104,6 +104,16 @@ namespace GameSaveLinker
 				}
 			}
 
+			if (actions.Count > 0)
+			{
+				// Sort the actions by number of slashes (descending) so we hide sub folders first. This should prevent
+				// the parent folders from failing to hide.
+				actions.Sort(delegate(Action a1, Action a2)
+				{
+					return a2.Path.Split(Path.DirectorySeparatorChar).Length - a1.Path.Split(Path.DirectorySeparatorChar).Length;
+				});
+			}
+
 			return this.ShowPreviewDialog(actions);
 		}
 
