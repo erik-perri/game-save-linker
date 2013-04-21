@@ -14,6 +14,8 @@ namespace GameSaveLinker
 			get; private set;
 		}
 
+		protected String placeholderMyGames = "{MyGames}";
+
 		public GameSaveManager()
 		{
 		}
@@ -70,6 +72,7 @@ namespace GameSaveLinker
 		public Boolean HandleShowLinks(Boolean show = true)
 		{
 			ActionList actions = new ActionList();
+			Boolean hadMyGames = false;
 
 			foreach (Game game in this.Games)
 			{
@@ -81,6 +84,14 @@ namespace GameSaveLinker
 				if (game.State != Game.SaveState.FullLink)
 				{
 					continue;
+				}
+
+				if (hadMyGames == false)
+				{
+					if (game.OriginalPath.IndexOf(this.placeholderMyGames) != -1)
+					{
+						hadMyGames = true;
+					}
 				}
 
 				List<String> paths = this.GetPathsToHide(game.OriginalPath);
@@ -101,6 +112,15 @@ namespace GameSaveLinker
 							actions.AddAction("hide", game, paths[i]);
 						}
 					}
+				}
+			}
+
+			if (hadMyGames)
+			{
+				Boolean isHidden = DirectoryEx.IsHidden(GamePlaceholder.ReplacePlaceholders(this.placeholderMyGames));
+				if ((show && isHidden) || (!show && !isHidden))
+				{
+					actions.AddAction((show ? "show" : "hide"), this.placeholderMyGames);
 				}
 			}
 
@@ -125,6 +145,7 @@ namespace GameSaveLinker
 		public Boolean HandleMoveToStorage(Boolean create = true)
 		{
 			ActionList actions = new ActionList();
+			Boolean handledMyGames = false;
 
 			foreach (Game game in this.Games)
 			{
@@ -163,6 +184,18 @@ namespace GameSaveLinker
 					}
 
 					List<String> paths = this.GetPathsToHide(game.OriginalPath);
+
+					if (handledMyGames == false)
+					{
+						if (game.OriginalPath.IndexOf(this.placeholderMyGames) != -1)
+						{
+							if (DirectoryEx.IsHidden(GamePlaceholder.ReplacePlaceholders(this.placeholderMyGames)))
+							{
+								actions.AddAction("show", game, this.placeholderMyGames);
+							}
+							handledMyGames = true;
+						}
+					}
 
 					// Start at 1 since the actual save path does not need to be unhidden
 					for (int i = 1, t = paths.Count; i < t; i++)
