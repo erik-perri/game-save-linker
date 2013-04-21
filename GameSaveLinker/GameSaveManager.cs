@@ -53,7 +53,7 @@ namespace GameSaveLinker
 
 		protected DialogResult ShowPreviewDialog(ActionList actions)
 		{
-			Preview preview = new Preview(this, actions);
+			PreviewWindow preview = new PreviewWindow(this, actions);
 			preview.ShowDialog();
 			return preview.DialogResult;
 		}

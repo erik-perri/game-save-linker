@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace GameSaveLinker
 {
-	public partial class Preview : Form
+	public partial class PreviewWindow : Form
 	{
 		protected ActionList actions;
 		protected GameSaveManager manager;
 
-		public Preview(GameSaveManager manager, ActionList actions)
+		public PreviewWindow(GameSaveManager manager, ActionList actions)
 		{
 			InitializeComponent();
 

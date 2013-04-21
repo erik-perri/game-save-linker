@@ -1,6 +1,6 @@
 ﻿namespace GameSaveLinker
 {
-	partial class Preview
+	partial class PreviewWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Preview));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreviewWindow));
 			this.imageListPreview = new System.Windows.Forms.ImageList(this.components);
 			this.buttonContinue = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
