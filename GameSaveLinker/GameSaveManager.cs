@@ -46,27 +46,16 @@ namespace GameSaveLinker
 			}
 		}
 
-		protected Boolean ShowPreviewDialog(ActionList actions)
+		protected DialogResult ShowErrorDialog(String message)
 		{
-			if (!this.Games.HasChecked())
-			{
-				MessageBox.Show("No games checked");
-				return false;
-			}
+			return MessageBox.Show(message);
+		}
 
-			if (actions.Count == 0)
-			{
-				MessageBox.Show("Nothing to do");
-				return false;
-			}
-
+		protected DialogResult ShowPreviewDialog(ActionList actions)
+		{
 			Preview preview = new Preview(this, actions);
 			preview.ShowDialog();
-			if (preview.DialogResult == DialogResult.OK)
-			{
-				return true;
-			}
-			return false;
+			return preview.DialogResult;
 		}
 
 		public Boolean HandleShowLinks(Boolean show = true)
@@ -124,17 +113,26 @@ namespace GameSaveLinker
 				}
 			}
 
-			if (actions.Count > 0)
+			if (!this.Games.HasChecked())
 			{
-				// Sort the actions by number of slashes (descending) so we hide sub folders first. This should prevent
-				// the parent folders from failing to hide.
-				actions.Sort(delegate(Action a1, Action a2)
-				{
-					return a2.Path.Split(Path.DirectorySeparatorChar).Length - a1.Path.Split(Path.DirectorySeparatorChar).Length;
-				});
+				this.ShowErrorDialog("No games checked");
+				return false;
 			}
 
-			return this.ShowPreviewDialog(actions);
+			if (actions.Count == 0)
+			{
+				this.ShowErrorDialog(String.Format("No links found that need to be {0}", (show ? "shown" : "hidden")));
+				return false;
+			}
+
+			// Sort the actions by number of slashes (descending) so we hide sub folders first. This should prevent
+			// the parent folders from failing to hide.
+			actions.Sort(delegate(Action a1, Action a2)
+			{
+				return a2.Path.Split(Path.DirectorySeparatorChar).Length - a1.Path.Split(Path.DirectorySeparatorChar).Length;
+			});
+
+			return this.ShowPreviewDialog(actions) == DialogResult.OK;
 		}
 
 		public Boolean HandleHideLinks()
@@ -215,7 +213,19 @@ namespace GameSaveLinker
 				}
 			}
 
-			return this.ShowPreviewDialog(actions);
+			if (!this.Games.HasChecked())
+			{
+				this.ShowErrorDialog("No games checked");
+				return false;
+			}
+			
+			if (actions.Count == 0)
+			{
+				this.ShowErrorDialog(String.Format("No games found that need to be moved to {0}", (create ? "storage" : "their original location")));
+				return false;
+			}
+
+			return this.ShowPreviewDialog(actions) == DialogResult.OK;
 		}
 
 		public Boolean HandleMoveToOriginal()
