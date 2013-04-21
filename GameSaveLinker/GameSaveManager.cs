@@ -181,6 +181,8 @@ namespace GameSaveLinker
 
 		public static String PreviewAction(Game game, String action, int pathId)
 		{
+			String moveFormat = "{0} -> {1}";
+
 			switch (action)
 			{
 				case "hide":
@@ -188,11 +190,11 @@ namespace GameSaveLinker
 					List<String> paths = game.GetPathsToHide(false);
 					return paths[pathId];
 				case "move-storage":
-					return game.GetOriginalPath(false) + " -> " + game.GetStoragePath(false);
+					return String.Format(moveFormat, game.GetOriginalPath(false), game.GetStoragePath(false));
 				case "move-original":
-					return game.GetStoragePath(false) + " -> " + game.GetOriginalPath(false);
+					return String.Format(moveFormat, game.GetStoragePath(false), game.GetOriginalPath(false));
 				case "create-link":
-					return game.GetOriginalPath(false) + " -> " + game.GetStoragePath(false);
+					return String.Format(moveFormat, game.GetStoragePath(false), game.GetOriginalPath(false));
 				case "delete-link":
 					return game.GetOriginalPath(false);
 				default:
