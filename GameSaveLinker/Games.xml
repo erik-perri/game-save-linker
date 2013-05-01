@@ -44,6 +44,7 @@
 		<Game Name="Fallout 3" 								Saves="{MyGames}\Fallout3" />
 		<Game Name="Fallout: New Vegas" 					Saves="{MyGames}\FalloutNV" />
 		<Game Name="Far Cry 2" 								Saves="{MyGames}\Far Cry 2" />
+		<Game Name="Far Cry 3" 								Saves="{MyGames}\Far Cry 3" />
 		<Game Name="FTL: Faster than Light" 				Saves="{MyGames}\FasterThanLight" />
 		<Game Name="Gnomoria" 								Saves="{MyGames}\Gnomoria" />
 		<Game Name="Gothic 3" 								Saves="{MyDocuments}\gothic3" />
