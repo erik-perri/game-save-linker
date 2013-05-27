@@ -373,6 +373,12 @@ namespace GameSaveLinker
 		{
 			List<String> paths = new List<String>();
 
+            // If the path is in AppData there is no need to hide it
+            if (path.IndexOf("AppData") != -1)
+            {
+                return paths;
+            }
+
 			String current = "";
 			String[] sections = path.Split(Path.DirectorySeparatorChar);
 			foreach (String directory in sections)
