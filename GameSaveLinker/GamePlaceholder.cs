@@ -32,8 +32,9 @@ namespace GameSaveLinker
 				SetupPlaceholder();
 			}
 			_placeholders.Clear();
-			_placeholders.Add("UserProfile", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
-			_placeholders.Add("AppData", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            _placeholders.Add("UserProfile", Environment.GetFolderPath(Environment.SpecialFolder.UserProfile));
+            _placeholders.Add("AppData", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            _placeholders.Add("AppDataLocal", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
 			_placeholders.Add("SavedGames", SpecialFolder.GetSavedGames());
 			_placeholders.Add("MyGames", SpecialFolder.GetMyGames());
 			_placeholders.Add("MyDocuments", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
