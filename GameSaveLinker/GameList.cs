@@ -110,7 +110,7 @@ namespace GameSaveLinker
 
 					if (!includeMissing && game.State == Game.SaveState.Missing)
 					{
-						Trace.WriteLine(String.Format("{0}.LoadGames: No saves found for {1}", this.GetType(), game.ToString()));
+						Trace.WriteLine(String.Format("{0}.LoadGames: No saves found for {1}, search path {2}", this.GetType(), game.ToString(), game.OriginalPathFull));
 						continue;
 					}
 
