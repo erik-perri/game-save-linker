@@ -46,6 +46,7 @@
 		<Game Name="Far Cry 2" 								Saves="{MyGames}\Far Cry 2" />
 		<Game Name="Far Cry 3" 								Saves="{MyGames}\Far Cry 3" />
 		<Game Name="FTL: Faster than Light" 				Saves="{MyGames}\FasterThanLight" />
+		<Game Name="Games for Windows Live"					Saves="{AppDataLocal}\Microsoft\XLive" />
 		<Game Name="Gnomoria" 								Saves="{MyGames}\Gnomoria" />
 		<Game Name="Gothic 3" 								Saves="{MyDocuments}\gothic3" />
 		<Game Name="Gothic 4" 								Saves="{MyDocuments}\ArcaniA - Gothic 4" />
