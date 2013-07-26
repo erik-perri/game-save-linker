@@ -46,6 +46,7 @@
 		<Game Name="Fallout: New Vegas" 					Saves="{MyGames}\FalloutNV" />
 		<Game Name="Far Cry 2" 								Saves="{MyGames}\Far Cry 2" />
 		<Game Name="Far Cry 3" 								Saves="{MyGames}\Far Cry 3" />
+		<Game Name="Final Fantasy VII" 						Saves="{MyDocuments}\Square Enix\FINAL FANTASY VII Steam" Storage="{StoragePath}\Final Fantasy VII\Steam" />
 		<Game Name="FTL: Faster than Light" 				Saves="{MyGames}\FasterThanLight" />
 		<Game Name="Games for Windows Live"					Saves="{AppDataLocal}\Microsoft\XLive" />
 		<Game Name="Gnomoria" 								Saves="{MyGames}\Gnomoria" />
@@ -75,7 +76,7 @@
 		<Game Name="Metro 2033" 							Saves="{MyDocuments}\4A Games\Metro 2033" />
 		<Game Name="Mirror's Edge" 							Saves="{MyDocuments}\EA Games\Mirror's Edge" />
 		<Game Name="Monday Night Combat" 					Saves="{MyGames}\UnrealEngine3\HostileGame" />
-		<Game Name="Mount &amp; Blade Warband (Data)"		Saves="{MyDocuments}\Mount&amp;Blade Warband" 							Storage="{StoragePath}\Mount &amp; Blade Warband\Data" />
+		<Game Name="Mount &amp; Blade Warband (Data)"		Saves="{MyDocuments}\Mount&amp;Blade Warband" Storage="{StoragePath}\Mount &amp; Blade Warband\Data" />
 		<Game Name="Mount &amp; Blade Warband"				Saves="{MyDocuments}\Mount&amp;Blade Warband Savegames" />
 		<Game Name="Mount &amp; Blade with Fire and Sword" 	Saves="{MyDocuments}\Mount&amp;Blade With Fire and Sword" />
 		<Game Name="Mount &amp; Blade" 						Saves="{MyDocuments}\Mount&amp;Blade Savegames" />
