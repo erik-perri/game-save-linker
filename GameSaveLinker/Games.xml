@@ -15,6 +15,7 @@
 		<Game Name="Borderlands 2" 							Saves="{MyGames}\Borderlands 2" />
 		<Game Name="BulletStorm" 							Saves="{MyGames}\BulletStorm" />
 		<Game Name="Bully" 									Saves="{MyDocuments}\Bully Scholarship Edition" />
+		<Game Name="Carmageddon Reincarnation" 				Saves="{MyDocuments}\Carmageddon Reincarnation" />
 		<Game Name="Civilization 4" 						Saves="{MyGames}\Sid Meier's Civilization 4" />
 		<Game Name="Civilization 5" 						Saves="{MyGames}\Sid Meier's Civilization 5" />
 		<Game Name="Civilization IV" 						Saves="{MyGames}\Sid Meier's Civilization IV" />
