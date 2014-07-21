@@ -37,6 +37,7 @@
 		<Game Name="DiRT 2" 								Saves="{MyGames}\DiRT2" />
 		<Game Name="DiRT 3" 								Saves="{MyGames}\DiRT3" />
 		<Game Name="Dishonored" 							Saves="{MyGames}\Dishonored" />
+		<Game Name="Divinity: Original Sin" 				Saves="{MyDocuments}\Larian Studios\Divinity Original Sin" />
 		<Game Name="Don't Starve" 							Saves="{MyDocuments}\Klei\DoNotStarve" />
 		<Game Name="Dragon Age 1" 							Saves="{MyDocuments}\BioWare\Dragon Age" />
 		<Game Name="Dragon Age 2" 							Saves="{MyDocuments}\BioWare\Dragon Age 2" />
