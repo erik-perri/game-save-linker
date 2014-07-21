@@ -102,6 +102,7 @@
 		<Game Name="SimCity 4" 								Saves="{MyDocuments}\SimCity 4" />
 		<Game Name="Skyrim" 								Saves="{MyGames}\skyrim" />
 		<Game Name="Sonic Generations" 						Saves="{MyGames}\Sonic Generations" />
+		<Game Name="South Park: The Stick of Truth"			Saves="{MyGames}\South Park - The Stick of Truth" />
 		<Game Name="SpaceTrader" 							Saves="{MyDocuments}\st\st" />
 		<Game Name="SpellForce 2" 							Saves="{MyDocuments}\SpellForce2" />
 		<Game Name="StarCraft II" 							Saves="{MyDocuments}\StarCraft II" />
