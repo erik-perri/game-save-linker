@@ -105,6 +105,7 @@
 		<Game Name="Terraria" 								Saves="{MyGames}\Terraria" />
 		<Game Name="The Last Remnant" 						Saves="{MyGames}\The last remnant" />
 		<Game Name="The Settlers Rise of an Empire" 		Saves="{MyDocuments}\THE SETTLERS - Rise of an Empire" />
+		<Game Name="The Sims 3"								Saves="{MyDocuments}\Electronic Arts\The Sims 3" />
 		<Game Name="Titan Quest" 							Saves="{MyGames}\Titan Quest" />
 		<Game Name="Titan Quest: Immortal Throne" 			Saves="{MyGames}\Titan Quest - Immortal Throne" />
 		<Game Name="Tomb Raider Legend" 					Saves="{MyDocuments}\Tomb Raider - Legend" />
