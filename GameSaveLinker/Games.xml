@@ -118,6 +118,7 @@
 		<Game Name="Void" 									Saves="{MyGames}\Void" />
 		<Game Name="Witcher 1" 								Saves="{MyDocuments}\The Witcher" />
 		<Game Name="Witcher 2" 								Saves="{MyDocuments}\Witcher 2" />
+		<Game Name="X: Rebirth" 							Saves="{MyDocuments}\Egosoft\X Rebirth" />
 		<Game Name="X3: Albion Prelude" 					Saves="{MyDocuments}\Egosoft\X3AP" />
 		<Game Name="X3: Terran Conflict" 					Saves="{MyDocuments}\Egosoft\X3TC" />
 	</Games>
