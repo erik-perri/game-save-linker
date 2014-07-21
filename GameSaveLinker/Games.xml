@@ -9,6 +9,7 @@
 		<Game Name="Batman Arkham Asylum" 					Saves="{MyDocuments}\Eidos\Batman Arkham Asylum" />
 		<Game Name="Batman Arkham City" 					Saves="{MyDocuments}\WB Games\Batman Arkham City" />
 		<Game Name="Bioshock" 								Saves="{MyDocuments}\Bioshock" />
+		<Game Name="BlazBlue Calamity Trigger" 				Saves="{MyDocuments}\ARC SYSTEM WORKS\BBCT" />
 		<Game Name="BlazBlue Continuum Shift" 				Saves="{MyDocuments}\ARC SYSTEM WORKS\BLAZBLUE-CT" />
 		<Game Name="Borderlands 1" 							Saves="{MyGames}\Borderlands" />
 		<Game Name="Borderlands 2" 							Saves="{MyGames}\Borderlands 2" />
