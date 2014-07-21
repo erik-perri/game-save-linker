@@ -57,6 +57,7 @@
 		<Game Name="Gothic 3" 								Saves="{MyDocuments}\gothic3" />
 		<Game Name="Gothic 4" 								Saves="{MyDocuments}\ArcaniA - Gothic 4" />
 		<Game Name="Gratuitous Space Battles" 				Saves="{MyGames}\GratuitousSpaceBattles" />
+		<Game Name="Grim Dawn" 								Saves="{MyGames}\Grim Dawn" />
 		<Game Name="Grotesque Tactics 1" 					Saves="{MyDocuments}\Grotesque-Tactics" />
 		<Game Name="GTA 3" 									Saves="{MyDocuments}\GTA3 User Files" />
 		<Game Name="GTA IV" 								Saves="{MyDocuments}\Rockstar Games\GTA IV" />
