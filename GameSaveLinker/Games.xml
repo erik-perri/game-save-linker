@@ -87,6 +87,7 @@
 		<Game Name="Mount &amp; Blade with Fire and Sword" 	Saves="{MyDocuments}\Mount&amp;Blade With Fire and Sword" />
 		<Game Name="Mount &amp; Blade" 						Saves="{MyDocuments}\Mount&amp;Blade Savegames" />
 		<Game Name="Neverwinter Nights 2" 					Saves="{MyDocuments}\Neverwinter Nights 2" />
+		<Game Name="Oblivion"								Saves="{MyGames}\oblivion" />
 		<Game Name="Osmos" 									Saves="{MyDocuments}\Osmos" />
 		<Game Name="Overlord II" 							Saves="{MyGames}\Overlord II" />
 		<Game Name="Overlord" 								Saves="{MyDocuments}\Overlord" />
