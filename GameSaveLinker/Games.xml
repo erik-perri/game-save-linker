@@ -14,6 +14,8 @@
 		<Game Name="Borderlands 1" 							Saves="{MyGames}\Borderlands" />
 		<Game Name="Borderlands 2" 							Saves="{MyGames}\Borderlands 2" />
 		<Game Name="Brothers - A Tale of Two Sons" 			Saves="{MyGames}\Brothers - A Tale of Two Sons" />
+		<Game Name="Brothers - A Tale of Two Sons (Data)" 	Saves="{MyGames}\UnrealEngine3\Binaries" Storage="{StoragePath}\Brothers - A Tale of Two Sons\Data 1" />
+		<Game Name="Brothers - A Tale of Two Sons (Data)" 	Saves="{MyGames}\UnrealEngine3\P13" Storage="{StoragePath}\Brothers - A Tale of Two Sons\Data 2" />
 		<Game Name="BulletStorm" 							Saves="{MyGames}\BulletStorm" />
 		<Game Name="Bully" 									Saves="{MyDocuments}\Bully Scholarship Edition" />
 		<Game Name="Carmageddon Reincarnation" 				Saves="{MyDocuments}\Carmageddon Reincarnation" />
@@ -118,7 +120,6 @@
 		<Game Name="Torchlight 2" 							Saves="{MyGames}\Runic Games\Torchlight 2" />
 		<Game Name="TrackMania" 							Saves="{MyDocuments}\TrackMania" />
 		<Game Name="Universe Sandbox" 						Saves="{MyDocuments}\Universe Sandbox" />
-		<Game Name="Unreal Engine 3" 						Saves="{MyGames}\UnrealEngine3" />
 		<Game Name="Unreal Tournament 3" 					Saves="{MyGames}\Unreal Tournament 3" />
 		<Game Name="Velvet Assassin" 						Saves="{MyGames}\Velvet Assassin" />
 		<Game Name="Void" 									Saves="{MyGames}\Void" />
