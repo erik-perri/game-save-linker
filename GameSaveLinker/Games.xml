@@ -4,11 +4,13 @@
     <StoragePath>{SavedGames}</StoragePath>
   </Options>
   <Games>
+    <Game Name="A Way Out"                               Saves="{MyGames}\A Way Out" />
     <Game Name="Age of Empires 3"                        Saves="{MyGames}\Age of Empires 3" />
     <Game Name="Alpha Protocol"                          Saves="{MyDocuments}\Alpha Protocol" />
     <Game Name="Arcana Heart 3 LOVE MAX"                 Saves="{MyDocuments}\ARC SYSTEM WORKS\AH3LM" />
     <Game Name="Batman Arkham Asylum"                    Saves="{MyDocuments}\Eidos\Batman Arkham Asylum" />
     <Game Name="Batman Arkham City"                      Saves="{MyDocuments}\WB Games\Batman Arkham City" />
+    <Game Name="Bayonetta"                               Saves="{MyDocuments}\Bayonetta" />
     <Game Name="Bioshock"                                Saves="{MyDocuments}\Bioshock" />
     <Game Name="BlazBlue Calamity Trigger"               Saves="{MyDocuments}\ARC SYSTEM WORKS\BBCT" />
     <Game Name="BlazBlue Continuum Shift"                Saves="{MyDocuments}\ARC SYSTEM WORKS\BLAZBLUE-CT" />
@@ -32,11 +34,13 @@
     <Game Name="Crysis"                                  Saves="{MyGames}\Crysis" />
     <Game Name="Cthulhu Saves the World"                 Saves="{MyDocuments}\SavedGames\CSTW\Cthulhu Saves the World" />
     <Game Name="Dark Souls"                              Saves="{MyDocuments}\NBGI\DarkSouls" />
+    <Game Name="Dark Souls 3"                            Saves="{AppData}\DarkSoulsIII" />
     <Game Name="Darksiders 1"                            Saves="{MyGames}\Darksiders" />
     <Game Name="Dawn of War 2"                           Saves="{MyGames}\Dawn of War 2" />
     <Game Name="Dead Horde"                              Saves="{MyDocuments}\DeadHorde" />
     <Game Name="Dead or Alive 5: Last Round"             Saves="{MyDocuments}\KoeiTecmo\DOA5LR" />
     <Game Name="Dead Rising 2"                           Saves="{MyGames}\Dead Rising 2" />
+    <Game Name="Destiny 2"                               Saves="{AppData}\Bungie\DestinyPC" />
     <Game Name="Deus Ex"                                 Saves="{MyDocuments}\Deus Ex" />
     <Game Name="Devil May Cry 4"                         Saves="{MyDocuments}\CAPCOM\DEVILMAYCRY4" />
     <Game Name="Diablo III"                              Saves="{MyDocuments}\Diablo III" />
@@ -55,6 +59,7 @@
     <Game Name="Dying Light"                             Saves="{MyDocuments}\DyingLight" />
     <Game Name="Eden"                                    Saves="{MyDocuments}\minori\eden (English edition)" Storage="{StoragePath}\Eden\Clean" />
     <Game Name="Eden (PLUS+MOSAIC)"                      Saves="{MyDocuments}\minori\eden plusmosaic (English edition)" Storage="{StoragePath}\Eden\PLUS+MOSAIC" />
+    <Game Name="Endless Sky"                             Saves="{AppData}\endless-sky" />
     <Game Name="Eschalon Book 1"                         Saves="{MyDocuments}\Eschalon Book 1 Saved Games" />
     <Game Name="Fable 1"                                 Saves="{MyGames}\Fable" />
     <Game Name="Fairy Fencer F"                          Saves="{MyGames}\Idea Factory International, Inc\Fairy Fencer F" />
@@ -65,6 +70,8 @@
     <Game Name="Far Cry 3"                               Saves="{MyGames}\Far Cry 3" />
     <Game Name="Far Cry 4"                               Saves="{MyGames}\Far Cry 4" />
     <Game Name="Final Fantasy VII"                       Saves="{MyDocuments}\Square Enix\FINAL FANTASY VII Steam" Storage="{StoragePath}\Final Fantasy VII\Steam" />
+    <Game Name="Forge (MTG; Saves)"                      Saves="{AppData}\Forge" Storage="{StoragePath}\Forge\Saves" />
+    <Game Name="Forge (MTG; Cache)"                      Saves="{AppDataLocal}\Forge" Storage="{StoragePath}\Forge\Cache" />
     <Game Name="FTL: Faster than Light"                  Saves="{MyGames}\FasterThanLight" />
     <Game Name="Games for Windows Live"                  Saves="{AppDataLocal}\Microsoft\XLive" />
     <Game Name="Ghost Recon Wildlands"                   Saves="{MyGames}\Ghost Recon Wildlands" />
@@ -107,6 +114,7 @@
     <Game Name="Mugen Souls"                             Saves="{MyGames}\Ghostlight Ltd\Mugen Souls" />
     <Game Name="Neverwinter Nights 2"                    Saves="{MyDocuments}\Neverwinter Nights 2" />
     <Game Name="NieR Automata"                           Saves="{MyGames}\NieR_Automata" />
+    <Game Name="No Man's Sky"                            Saves="{AppData}\HelloGames\NMS" />
     <Game Name="Oblivion"                                Saves="{MyGames}\oblivion" />
     <Game Name="Osmos"                                   Saves="{MyDocuments}\Osmos" />
     <Game Name="Overlord II"                             Saves="{MyGames}\Overlord II" />
@@ -129,6 +137,7 @@
     <Game Name="SpaceTrader"                             Saves="{MyDocuments}\st\st" />
     <Game Name="SpellForce 2"                            Saves="{MyDocuments}\SpellForce2" />
     <Game Name="StarCraft II"                            Saves="{MyDocuments}\StarCraft II" />
+    <Game Name="Stardew Valley"                          Saves="{AppData}\StardewValley" />
     <Game Name="Street Fighter IV"                       Saves="{MyDocuments}\CAPCOM\STREETFIGHTERIV" />
     <Game Name="Street Fighter IV (Ultra)"               Saves="{MyDocuments}\CAPCOM\SUPERSTREETFIGHTERIV" />
     <Game Name="Terraria"                                Saves="{MyGames}\Terraria" />
